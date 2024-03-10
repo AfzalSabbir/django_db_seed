@@ -1,0 +1,41 @@
+[
+    {
+        "model": "admin.logentry",
+        "pk": 3,
+        "fields": {
+            "action_time": "2024-03-09T11:45:23.045Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "8",
+            "object_repr": "Sensor Groups 1",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 2,
+        "fields": {
+            "action_time": "2024-03-09T11:44:47.458Z",
+            "user": 1,
+            "content_type": 4,
+            "object_id": "3",
+            "object_repr": "user1",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 1,
+        "fields": {
+            "action_time": "2024-03-09T11:32:49.321Z",
+            "user": 1,
+            "content_type": 4,
+            "object_id": "1",
+            "object_repr": "admin",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+        }
+    }
+]
