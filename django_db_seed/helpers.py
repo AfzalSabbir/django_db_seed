@@ -1,12 +1,27 @@
 import json
 import os
-from pathlib import Path
 
 from django.apps import apps
 from django.core.management import call_command
 from django.core.serializers import serialize
+from django.conf import settings
 
-db_backup_base_path = f"{Path(__file__).resolve().parent}/db_backup/"
+default_db_seed = {
+    'seed_dir': f"{settings.BASE_DIR}/db_seed/",
+    'apps': [
+        "admin",
+        "auth",
+    ]
+}
+
+db_seed = getattr(
+    settings,
+    'DJANGO_DB_SEED',
+    default_db_seed
+)
+
+db_seed_dir = db_seed.get('seed_dir', default_db_seed['seed_dir'])
+db_seed_apps = db_seed.get('apps', default_db_seed['apps'])
 
 
 def get_models():
@@ -17,11 +32,7 @@ def get_models():
     models = {}
 
     # include only these apps to back up their data
-    include_only = [
-        "admin",
-        "auth",
-        "todo",
-    ]
+    app_names = db_seed_apps
 
     # Get a list of all installed apps
     installed_apps = apps.get_app_configs()
@@ -31,7 +42,7 @@ def get_models():
         if app.label not in models:
             _models = app.get_models()
 
-            if app.label not in include_only:
+            if app.label not in app_names:
                 continue
 
             models[app.label] = []
@@ -51,7 +62,7 @@ def backup():
     # loop over models
     for app in models:
         print(f"App: {app}")
-        ensure_directory_exists(db_backup_base_path + app)
+        ensure_directory_exists(db_seed_dir + app)
         for model in models[app]:
             print(f" - {model}")
             # get the model's data
@@ -61,7 +72,7 @@ def backup():
             print(f"   - backing up {model}...")
 
             # dumpdata
-            dump_model_data_to_json(f"{app}.{model}", f"{db_backup_base_path}{app}/{model}.json")
+            dump_model_data_to_json(f"{app}.{model}", f"{db_seed_dir}{app}/{model}.json")
 
 
 def restore():
@@ -82,7 +93,7 @@ def restore():
             truncate_data(model_class)
 
             # loaddata
-            load_data_from_json(f"{db_backup_base_path}{app}/{model}.json")
+            load_data_from_json(f"{db_seed_dir}{app}/{model}.json")
 
 
 def ensure_directory_exists(directory):
@@ -130,4 +141,4 @@ def truncate_data(model_class):
     # After truncating, you can seed data or load data from a file
     # Example: data = [...] and then create instances
 
-    print('Data restored and truncated successfully')
+    print('Truncated data from the model:', model_class)
