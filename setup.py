@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-db-seed',
-    version='1.0.0',
+    version='1.0.1',
     packages=[
         'django_db_seed',
         'django_db_seed.management',
@@ -18,7 +18,7 @@ setup(
         # Add any other dependencies here
     ],
     setup_requires=['wheel'],
-    python_requires='>=3.12',
+    python_requires='>=3.10',
     license='MIT',
     description='A Django app to backup and restore the database.',
     long_description=open('README.md').read(),

@@ -18,8 +18,6 @@ To configure Django DB Seed, you can define the following settings in your Djang
 # settings.py
 
 # ...
-from django.conf import settings
-# ...
 
 INSTALLED_APPS = (
     # ...
@@ -29,12 +27,15 @@ INSTALLED_APPS = (
 # ...
 
 DJANGO_DB_SEED = {
-    'seed_dir': f"{settings.BASE_DIR}/db-seed/",
+    'seed_dir': "db-seed/",
     'apps': [
         "admin",
         "auth",
+        # ...
     ]
 }
+
+# ...
 ```
 
 - `seed_dir`: Specifies the directory where your seed data files are located. By default, it is set to a directory named `db-seed` in your project's base directory (`BASE_DIR`).
