@@ -1,5 +1,13 @@
 # Django DB Seed
 
+[![PyPI Version](https://img.shields.io/pypi/v/django-db-seed.svg)](https://pypi.org/project/django-db-seed/)
+[![Build Status](https://travis-ci.org/AfzalSabbir/django_db_seed.svg?branch=master)](https://travis-ci.org/AfzalSabbir/django_db_seed)
+[![License](https://img.shields.io/pypi/l/django-db-seed.svg)](https://github.com/AfzalSabbir/django_db_seed/blob/master/LICENSE.md)
+[![Python Versions](https://img.shields.io/pypi/pyversions/django-db-seed.svg)](https://pypi.org/project/django-db-seed/)
+[![Django Versions](https://img.shields.io/pypi/djversions/django-db-seed.svg)](https://pypi.org/project/django-db-seed/)
+[![Downloads](https://img.shields.io/pypi/dm/django-db-seed.svg)](https://pypi.org/project/django-db-seed/)
+
+
 Django DB Seed is a Django package designed to simplify the process of seeding your database with initial data. It provides a convenient way to define and load seed data into your Django project.
 
 ## Installation
